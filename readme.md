@@ -1,4 +1,4 @@
-<img src="./images/caronte.png" width="250px" height="250px" align="right" />
+<img src="./images/caronte.png" width="400px" height="250px" align="right" />
 
 # Caronte
 
