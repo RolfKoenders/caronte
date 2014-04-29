@@ -4,6 +4,7 @@
 
 Current version: ** 1.0.x **
 
+[![Build Status](https://travis-ci.org/icemobilelab/caronte.svg?branch=master)](https://travis-ci.org/icemobilelab/caronte)
 
 # Usage
 
