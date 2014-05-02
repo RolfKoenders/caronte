@@ -40,7 +40,8 @@ describe('Caronte ', function() {
 		};
 		caronte = new Caronte(configuration);
 		caronte.sourceTypes = {
-			'http': SourceMock
+			'http': SourceMock,
+			'soap': SourceMock
 		};
 	});
 
@@ -63,6 +64,36 @@ describe('Caronte ', function() {
 			expect(caronte._sources[id]).toBeDefined();
 			expect(caronte._sources[id]).toBe(new SourceMock(options));
 		});
+	});
+
+	//registerWsdl
+	describe('- registerWsdl', function() {
+		var wsdlPath = null;
+		var soapMethods = null;
+		var url = 'fooUrl';
+
+		beforeEach(function() {
+			wsdlPath = 'some url';
+			soapMethods = [ 'method1', 'method2' ];
+		});
+
+		it('creates a source for each soapMethod', function() {
+			caronte.registerWsdl(wsdlPath, soapMethods);
+			var sources = caronte._sources;
+			expect(sources['method1']).toBeDefined();
+			expect(sources['method2']).toBeDefined();
+		});
+
+		it('sets the source up with the right sourceParams', function() {
+			caronte.registerWsdl(wsdlPath, soapMethods, url);
+			var soapSource = caronte._sources['method1'];
+			expect(SourceMock).toHaveBeenCalledWith({
+				wsdlPath: wsdlPath,
+				soapMethod: soapMethods[0],
+				url: url
+			});
+		});
+
 	});
 
 	//unregister
