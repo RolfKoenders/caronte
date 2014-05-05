@@ -6,6 +6,8 @@ Current version: ** 1.0.x **
 
 [![Build Status](https://travis-ci.org/icemobilelab/caronte.svg?branch=master)](https://travis-ci.org/icemobilelab/caronte)
 
+[![Coverage Status](https://coveralls.io/repos/icemobilelab/caronte/badge.png)](https://coveralls.io/r/icemobilelab/caronte)
+
 # Usage
 
 The first version of Caronte has a simple interface consisting of three methods:
