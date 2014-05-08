@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-- 0.1
+  0.1
 deploy:
-  email: "icemobilelab@icemobile.com",
+  email: "icemobilelab@icemobile.com"
   provider: npm
   api_key:
     secure: UQXzQg94q48iKSGZv03m0l1jDVMdPOYVsS8Ti3NB8BBYMB+eTuTVIegHrFdtwWroeCZ599hU6SkN1sBwZjcRwVrox9IyHbYYirypID809K7ZpbVZ+gCAOnsWBSVs2Ysp0TNzrGZqOzGy/fZzvepn0XcahvF581EtxkjFeKcjQpM=
