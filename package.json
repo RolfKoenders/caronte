@@ -3,6 +3,7 @@
   "version": "1.2.1",
   "description": "Caronte provides a single interface to fetch data from anywhere.",
   "main": "index",
+  "author" : "Icemobile BV",
   "keywords": [
     "service",
     "connector",
