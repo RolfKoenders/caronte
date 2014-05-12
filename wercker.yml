@@ -11,4 +11,5 @@ deploy:
           name: Deploy to npm
           code: |
               npm set config email $NPM_AUTHOR_EMAIL
+              npm set config auth $NPM_ICEMOBILE_KEY_AUTH
               npm publish .
