@@ -16,6 +16,7 @@
 /*global describe:false, beforeEach:false, it:false, spyOn:false, expect:false, runs:false, waitsFor:false, createSpy:false, createSpyObj: false */
 
 var Q = require('q');
+var _ = require('underscore');
 var mock = require('mock');
 var SourceMock = require('./mocks/Source.mock.js');
 var ParametrizedUrlMock = require('./mocks/parametrizedUrl.mock.js');
@@ -68,30 +69,31 @@ describe('Caronte ', function() {
 
 	//registerWsdl
 	describe('- registerWsdl', function() {
-		var wsdlPath = null;
+		var options = null;
 		var soapMethods = null;
 		var url = 'fooUrl';
 
 		beforeEach(function() {
-			wsdlPath = 'some url';
+            options = {
+                wsdlPath: 'some url'
+            };
 			soapMethods = [ 'method1', 'method2' ];
 		});
 
 		it('creates a source for each soapMethod', function() {
-			caronte.registerWsdl(wsdlPath, soapMethods);
+			caronte.registerWsdl(soapMethods, options);
 			var sources = caronte._sources;
 			expect(sources['method1']).toBeDefined();
 			expect(sources['method2']).toBeDefined();
 		});
 
 		it('sets the source up with the right sourceParams', function() {
-			caronte.registerWsdl(wsdlPath, soapMethods, url);
+			caronte.registerWsdl(soapMethods, options);
 			var soapSource = caronte._sources['method1'];
-			expect(SourceMock).toHaveBeenCalledWith({
-				wsdlPath: wsdlPath,
-				soapMethod: soapMethods[0],
-				url: url
-			});
+            var sourceParams = _.extend({}, options, {
+                soapMethod: 'method1'
+            });
+			expect(SourceMock).toHaveBeenCalledWith(sourceParams);
 		});
 
 	});
