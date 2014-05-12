@@ -7,11 +7,11 @@ build:
 
 deploy:
   steps:
-    - script:
-      name: Deploy to npm
-      code: |
-        npm set init.author.name "Your Name"
-        npm set init.author.email "you@example.com"
-        npm set init.author.url "http://yourblog.com"
-        npm adduser
-        npm publish .
+      - script:
+          name: Deploy to npm
+          code: |
+              npm set init.author.name $NPM_AUTHOR_NAME
+              npm set init.author.email $NPM_AUTHOR_EMAIL
+              npm set init.author.url $NPM_AUTHOR_URL
+              npm adduser
+              npm publish .
