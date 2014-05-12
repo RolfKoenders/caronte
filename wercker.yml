@@ -10,10 +10,5 @@ deploy:
       - script:
           name: Deploy to npm
           code: |
-              npm set init.author.name $NPM_AUTHOR_NAME
-              npm set init.author.email $NPM_AUTHOR_EMAIL
-              npm set init.author.url $NPM_AUTHOR_URL,
-              npm set init.username $NPM_USERNAME,
-              npm set init._auth $NPM_ICEMOBILE_KEY_AUTH
-              npm adduser
+              npm set config email $NPM_AUTHOR_EMAIL
               npm publish .
