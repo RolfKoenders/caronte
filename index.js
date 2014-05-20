@@ -16,10 +16,12 @@ var Caronte = require('./lib/server/caronte');
 var carontes = {};
 
 //Return a unique instance of caronte for each unique id.
-var getCaronte = function (id) {
+var getCaronte = function (id, options) {
+	var self = this;
 	var caronte = carontes[id];
+
 	if (!caronte) {
-		caronte = carontes[id] = new Caronte();
+		caronte = carontes[id] = new Caronte(options || {});
 	}
 	return caronte;
 };
