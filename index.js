@@ -21,7 +21,6 @@ var getCaronte = function (id, options) {
 	var caronte = caronteInstances[id];
 
 	if (!caronte) {
-		options = options || {};
 		caronte = caronteInstances[id] = new Caronte(options);
 	}
 	return caronte;
