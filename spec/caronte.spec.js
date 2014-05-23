@@ -26,6 +26,9 @@ var Caronte  = mock('../lib/server/caronte.js', {
 		'../lib/server/parametrizedUrl': ParametrizedUrlMock
 	}, require);
 
+var index  = mock('../index.js', {
+	'../lib/server/caronte.js': Caronte
+}, require);
 
 /**
  * Caronte
@@ -39,7 +42,8 @@ describe('Caronte ', function() {
 				levels: { '[all]': 'OFF' }
 			}
 		};
-		caronte = new Caronte(configuration);
+		caronte = new Caronte();
+		caronte.configure(configuration);
 		caronte.sourceTypes = {
 			'http': SourceMock,
 			'soap': SourceMock
@@ -164,6 +168,35 @@ describe('Caronte ', function() {
 
 			caronte.request('test', callback);
 		});
+	});
+
+});
+
+describe('Caronte ', function() {
+	var api = null;
+	var baseUrl = "http://mybackend.net/api";
+
+	it('creates an instance with an id', function() {
+		var instance = index.getCaronte('instance');
+		var fooInstance = index.getCaronte('foo')
+		expect(instance).not.toBe(fooInstance);
+	});
+	it('add a baseUrl property to options passed to the instance', function() {
+		api = index.getCaronte('api', {
+			baseUrl: baseUrl
+		});
+		expect(api._options.baseUrl).toBe(baseUrl);
+	});
+	it('the requests should have the baseUrl in front of the url', function() {
+		api.register('someEndpoint', {
+	        url: '/some',
+	        type: 'http',
+	        method: 'GET',
+	        headers: {
+	            'Content-Type': 'application/json'
+	        }
+    	});
+		expect(api._sources['someEndpoint'].sourceParams.url).toBe(baseUrl+'/some');
 	});
 
 });

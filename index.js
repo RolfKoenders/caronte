@@ -13,13 +13,15 @@
 // limitations under the License.
 
 var Caronte = require('./lib/server/caronte');
-var carontes = {};
+var caronteInstances = {};
 
 //Return a unique instance of caronte for each unique id.
-var getCaronte = function (id) {
-	var caronte = carontes[id];
+var getCaronte = function (id, options) {
+	var self = this;
+	var caronte = caronteInstances[id];
+
 	if (!caronte) {
-		caronte = carontes[id] = new Caronte();
+		caronte = caronteInstances[id] = new Caronte(options);
 	}
 	return caronte;
 };
