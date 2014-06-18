@@ -8,10 +8,8 @@ build:
 deploy:
   steps:
       - script:
-          name: Deploy to npm
-          code: |
-              npm set config email $NPM_AUTHOR_EMAIL
-              npm set config auth $NPM_ICEMOBILE_KEY_AUTH
-              npm set config username $NPM_USERNAME
-              npm adduser
-              npm publish .
+          name: setup npmrc
+          code: echo "_auth = $NPM_KEY" >> ~/.npmrc; echo "email = $NPM_EMAIL" >> ~/.npmrc
+      - script:
+          name: npm publish
+          code: npm publish
